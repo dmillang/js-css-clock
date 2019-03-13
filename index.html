@@ -18,7 +18,7 @@
 
   <style>
     html {
-      background: #018DED url(http://unsplash.it/1500/1000?image=911);
+      background: #1C1C3E url(http://unsplash.it/1500/1000?image=911);
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -72,7 +72,29 @@
   </style>
 
   <script>
+    const secondHand = document.querySelector('.second-hand'); // Select hand for seconds
+    const minuteHand = document.querySelector('.min-hand'); // Select hand for seconds
+    const hourHand = document.querySelector('.hour-hand'); // Select hand for seconds
 
+    function setDate() {
+      const now = new Date();
+      // seconds
+      const seconds = now.getSeconds();
+      const secondsDegrees = ((seconds/60) * 360) + 90; // The '+ 90' is there to compensate the offset rotation in .hand to start at the top 
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      // minutes
+      const minutes = now.getMinutes();
+      const minutesDegrees = ((minutes/60) * 360) + 90; // The '+ 90' is there to compensate the offset rotation in .hand to start at the top 
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      console.log(`${minutes} + ${now}`);
+      // hours
+      const hours = now.getHours();
+      const hoursDegrees = ((hours/12) * 360) + 90; // The '+ 90' is there to compensate the offset rotation in .hand to start at the top 
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      console.log(`${minutes} + ${now}`);
+    }
+
+    setInterval(setDate, 1000);
 
   </script>
 </body>
